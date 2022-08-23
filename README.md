@@ -8,7 +8,7 @@
 
 ### Bot oluşturmak için bu videoyu izleyin - https://youtu.be/dsuTn4qV2GA
 ### Kolay yol
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Drmehmetaktass/Media-Search-bot)
 
 
 ### Zor yol

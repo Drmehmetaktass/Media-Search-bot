@@ -1,29 +1,29 @@
 # [Media Search bot](https://github.com/Mahesh0253/Media-Search-bot)
 
-* Index channel or group files for inline search.
-* When you post file on telegram channel or group this bot will save that file in database, so you can search easily in inline mode.
-* Supports document, video and audio file formats with caption support.
+* Satır içi arama için dizin kanalı veya grup dosyaları.
+* Telegram kanalına veya grubuna dosya gönderdiğinizde, bu bot o dosyayı veritabanına kaydeder, böylece satır içi modda kolayca arama yapabilirsiniz.
+* Altyazı desteği ile belge, video ve ses dosyası formatlarını destekler.
 
-## Installation
+## Kurulum
 
-### Watch this video to create bot - https://youtu.be/dsuTn4qV2GA
-### Easy Way
+### Bot oluşturmak için bu videoyu izleyin - https://youtu.be/dsuTn4qV2GA
+### Kolay yol
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-### Hard Way
+### Zor yol
 ```bash
-# Create virtual environment
+# Sanal ortam oluştur
 python3 -m venv env
 
-# Activate virtual environment
-env\Scripts\activate.bat # For Windows
-source env/bin/activate # For Linux or MacOS
+# Sanal ortamı etkinleştir
+env\Scripts\activate.bat # Pencereler için
+source env/bin/activate # Linux veya MacOS için
 
-# Install Packages
+# Paketleri Yükle
 pip3 install -r requirements.txt
 
-# Edit info.py with variables as given below then run bot
+# info.py'yi aşağıda verilen değişkenlerle düzenleyin ve ardından bot'u çalıştırın
 python3 bot.py
 ```
 Check [`sample_info.py`](sample_info.py) before editing [`info.py`](info.py) file
@@ -49,46 +49,43 @@ docker run -d \
      --name mediasearchbot botxtg/media-search-bot
 ```
 
-## Variables
-### Required Variables
-* `BOT_TOKEN`: Create a bot using [@BotFather](https://telegram.dog/BotFather), and get the Telegram API token.
-* `API_ID`: Get this value from [telegram.org](https://my.telegram.org/apps)
-* `API_HASH`: Get this value from [telegram.org](https://my.telegram.org/apps)
-* `CHANNELS`: Username or ID of channel or group. Separate multiple IDs by space
-* `ADMINS`: Username or ID of Admin. Separate multiple Admins by space
-* `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Get this value from [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/dsuTn4qV2GA)
+## Değişkenler
+### Gerekli Değişkenler
+* `BOT_TOKEN`: kullanarak bir bot oluşturun [@BotFather](https://telegram.dog/BotFather), and get the Telegram API token.
+* `API_ID`: Bu değeri şuradan alın: [telegram.org](https://my.telegram.org/apps)
+* `API_HASH`: Bu değeri şuradan alın: [telegram.org](https://my.telegram.org/apps)
+* `CHANNELS`: Kanal veya grubun kullanıcı adı veya kimliği. Birden çok kimliği boşlukla ayırın
+* `YÖNETİCİLER`: Yöneticinin Kullanıcı Adı veya Kimliği. Birden çok Yöneticiyi alana göre ayırın
+* `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Bu değeri şuradan alın: [mongoDB](https://www.mongodb.com). Daha fazla yardım için bunu izleyin [video](https://youtu.be/dsuTn4qV2GA)
 * `DATABASE_NAME`: Name of the database in [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/dsuTn4qV2GA)
 
-### Optional Variables
-* `COLLECTION_NAME`: Name of the collections. Defaults to Telegram_files. If you going to use same database, then use different collection name for each bot
-* `CACHE_TIME`: The maximum amount of time in seconds that the result of the inline query may be cached on the server
-* `USE_CAPTION_FILTER`: Whether bot should use captions to improve search results. (True/False)
-* `AUTH_USERS`: Username or ID of users to give access of inline search. Separate multiple users by space. Leave it empty if you don't want to restrict bot usage.
-* `AUTH_CHANNEL`: Username or ID of channel. Without subscribing this channel users cannot use bot.
-* `START_MSG`: Welcome message for start command.
-* `INVITE_MSG`: Auth channel invitation message.
-* `USERBOT_STRING_SESSION`: User bot string session.
-## Admin commands
+### Opsiyonel Değişkenler
+* `COLLECTION_NAME`: Koleksiyonların adı. Varsayılan olarak Telegram_files'dir. Aynı veritabanını kullanacaksanız, her bot için farklı koleksiyon adı kullanın.
+* `CACHE_TIME`: r'nin saniye cinsinden maksimum süre bot, arama sonuçlarını iyileştirmek için altyazı kullanmalıdır. (Doğru yanlış)
+* `AUTH_USERS`: Satır içi aramaya erişim sağlayacak kullanıcıların kullanıcı adı veya kimliği. Birden çok kullanıcıyı alana göre ayırın. Yapmıyorsanız boş bırakın Bu kanala abone olan kullanıcılar bot kullanamaz.
+* `START_MSG`: Başlat komutu için hoş geldiniz mesajı.
+* `INVITE_MSG`: Yetkilendirme kanalı davet mesajı.
+* `USERBOT_STRING_SESSION`: Kullanıcı bot dizisi oturumu.
+## Yönetici komutları
 ```
-channel - Get basic infomation about channels
-total - Show total of saved files
-delete - Delete file from database
-index - Index all files from channel or group
-logger - Get log file
+channel - Kanallar hakkında temel bilgileri alın
+total - Kaydedilen dosyaların toplamını göster
+Delete - Dosyayı veritabanından sil
+index - Kanaldaki veya gruptaki tüm dosyaları indeksle
+logger - Günlük dosyasını 
 ```
+ 
+## İpuçları
+* Veritabanında henüz indekslenmemiş eski dosyaları kaydetmek için `index` komutunu kullanın veya [one_time_indexer.py](one_time_indexer.py) dosyasını çalıştırın.
+* Yapabilirsiniz use `|` Belirli bir dosya türünü ararken sorgu ve dosya türünü ayırmak için. Örneğin: `Yenilmezler | video'
+* Bir kanal veya grup oluşturmak istemiyorsanız, kanal olarak sohbet kimliğinizi / kullanıcı adınızı kullanın. 
+## Katkılar
+Katkılara açığız.
 
-## Tips
-* Use `index` command or run [one_time_indexer.py](one_time_indexer.py) file to save old files in the database that are not indexed yet.
-* You can use `|` to separate query and file type while searching for specific type of file. For example: `Avengers | video`
-* If you don't want to create a channel or group, use your chat ID / username as the channel ID. When you send a file to a bot, it will be saved in the database.
-
-## Contributions
-Contributions are welcome.
-
-## Thanks to [Pyrogram](https://github.com/pyrogram/pyrogram)
+## teşekkürler [Pyrogram](https://github.com/pyrogram/pyrogram)
 
 ## Support
-[Update Channel](https://t.me/botxupdates) and [Support Group](https://t.me/botxsupport)
+[Update Channel](https://t.me/turkcbot) and [Support Group](https://t.me/marvelturkey)
 
 ## License
 Code released under [The GNU General Public License](LICENSE).
